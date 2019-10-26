@@ -3,9 +3,9 @@
     <nav>
       <ul>
         <li v-for="(route, index) in routes" :key="index">
-          <router-link :to="{ name: route.name }">{{
-            route.label
-          }}</router-link>
+          <router-link :to="{ name: route.name }">
+            {{ route.label }}
+          </router-link>
         </li>
       </ul>
     </nav>
@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import { ROUTES } from "./router";
+import { STATIC_ROUTES } from "./router";
 
 export default {
   name: "App",
   data: function() {
     return {
-      routes: ROUTES
+      routes: STATIC_ROUTES
     };
   }
 };

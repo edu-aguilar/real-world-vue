@@ -4,23 +4,27 @@ import Home from "../views/home.vue";
 
 Vue.use(VueRouter);
 
-const ROUTES = {
+const STATIC_ROUTES = {
   home: { path: "/", name: "home", label: "home" },
-  event: { path: "/event", name: "event", label: "event" },
   newEvent: { path: "/event/new", name: "new-event", label: "new event" }
+};
+
+const DYNAMIC_ROUTES = {
+  event: { path: "/event/:id", name: "event", label: "event" }
 };
 
 const routes = [
   {
-    ...ROUTES.home,
+    ...STATIC_ROUTES.home,
     component: Home
   },
   {
-    ...ROUTES.event,
+    ...DYNAMIC_ROUTES.event,
+    props: true,
     component: () => import("../views/event.vue")
   },
   {
-    ...ROUTES.newEvent,
+    ...STATIC_ROUTES.newEvent,
     component: () => import("../views/newEvent.vue")
   }
 ];
@@ -31,4 +35,4 @@ const router = new VueRouter({
   routes
 });
 
-export { router, ROUTES };
+export { router, STATIC_ROUTES, DYNAMIC_ROUTES };
