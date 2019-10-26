@@ -1,5 +1,5 @@
 <template>
-  <div class="home-view">
+  <div class="view home-view">
     <h1>This is the Home page</h1>
     <input type="text" v-model="id" />
     <router-link :to="{ name: routes.event.name, params: { id } }">
