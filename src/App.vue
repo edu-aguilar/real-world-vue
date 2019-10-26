@@ -2,20 +2,29 @@
   <main class="app">
     <nav>
       <ul>
-        <li>
-          <router-link to="/">Home</router-link>
-        </li>
-        <li>
-          <router-link to="/event">event #1</router-link>
-        </li>
-        <li>
-          <router-link to="/event/new">New Event</router-link>
+        <li v-for="(route, index) in routes" :key="index">
+          <router-link :to="{ name: route.name }">{{
+            route.label
+          }}</router-link>
         </li>
       </ul>
     </nav>
     <router-view />
   </main>
 </template>
+
+<script>
+import { ROUTES } from "./router";
+
+export default {
+  name: "App",
+  data: function() {
+    return {
+      routes: ROUTES
+    };
+  }
+};
+</script>
 
 <style lang="scss" scoped>
 main.app {

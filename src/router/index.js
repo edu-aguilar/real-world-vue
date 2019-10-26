@@ -4,20 +4,23 @@ import Home from "../views/home.vue";
 
 Vue.use(VueRouter);
 
+const ROUTES = {
+  home: { path: "/", name: "home", label: "home" },
+  event: { path: "/event", name: "event", label: "event" },
+  newEvent: { path: "/event/new", name: "new-event", label: "new event" }
+};
+
 const routes = [
   {
-    path: "/",
-    name: "home",
+    ...ROUTES.home,
     component: Home
   },
   {
-    path: "/event",
-    name: "event",
+    ...ROUTES.event,
     component: () => import("../views/event.vue")
   },
   {
-    path: "/event/new",
-    name: "New Event",
+    ...ROUTES.newEvent,
     component: () => import("../views/newEvent.vue")
   }
 ];
@@ -28,4 +31,4 @@ const router = new VueRouter({
   routes
 });
 
-export default router;
+export { router, ROUTES };
