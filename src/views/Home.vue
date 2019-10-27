@@ -34,7 +34,9 @@ export default {
   created() {
     getEvents()
       .then(events => (this.events = events.data))
-      .catch(error => console.error(error));
+      .catch(error => {
+        throw error;
+      });
   }
 };
 </script>
