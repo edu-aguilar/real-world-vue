@@ -21,4 +21,8 @@ const getEvent = (eventId = 1) => {
   return _axios.get(`${ENDPOINTS.EVENTS}/${eventId}`);
 };
 
-export { getEvents, getEvent };
+const postEvent = event => {
+  return _axios.post(`${ENDPOINTS.EVENTS}`, event);
+};
+
+export { getEvents, getEvent, postEvent };
