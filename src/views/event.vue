@@ -18,27 +18,19 @@
 </template>
 
 <script>
-import { getEvent } from "@/services/apiService";
-
 export default {
   props: {
     id: String
   },
-  data() {
-    return {
-      event: {
-        type: Object,
-        required: true
-        //default: () => ({user: {}, attendess: []})
-      }
-    };
-  },
-  created() {
-    getEvent(this.id)
-      .then(event => (this.event = event.data))
-      .catch(error => {
-        throw error;
-      });
+  computed: {
+    event() {
+      /* playing with SPA deeplinking, if we reload the page on a event detail, the store is empty,
+        so lets fetch the events to make it works =D */
+      return (
+        this.$store.getters.eventById(this.id) ||
+        this.$store.dispatch("fetchEvents")
+      );
+    }
   }
 };
 </script>
