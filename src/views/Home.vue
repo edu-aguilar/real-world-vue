@@ -1,6 +1,6 @@
 <template>
   <div class="view home-view">
-    <h1>Most important events forthis weekend!</h1>
+    <h1>Most important events for this weekend!</h1>
 
     <section class="card-list">
       <router-link
