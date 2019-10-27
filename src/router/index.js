@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 
 const STATIC_ROUTES = {
   home: { path: "/", name: "home", label: "home" },
-  newEvent: { path: "/event/new", name: "new-event", label: "new event" }
+  newEvent: { path: "/new-event", name: "new-event", label: "new event" }
 };
 
 const DYNAMIC_ROUTES = {
