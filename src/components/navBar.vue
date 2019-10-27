@@ -23,12 +23,15 @@ export default {
 <style lang="scss" scoped>
 nav {
   padding: 30px;
+  width: 100%;
+  box-sizing: border-box;
 
   ul {
     list-style: none;
     display: flex;
     justify-content: center;
     padding: 0;
+    margin: 0;
 
     li {
       font-weight: bold;
