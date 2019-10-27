@@ -1,14 +1,16 @@
 <template>
   <div class="view home-view">
-    <h1>This is the Home page</h1>
-
-    <input type="text" v-model="id" />
-    <router-link :to="{ name: routes.event.name, params: { id } }">
-      {{ routes.event.label }} #{{ id }}
-    </router-link>
+    <h1>Most important events forthis weekend!</h1>
 
     <section class="card-list">
-      <eventCard />
+      <router-link
+        class="link"
+        v-for="event in events"
+        :key="event.id"
+        :to="{ name: routes.event.name, params: { id: event.id.toString() } }"
+      >
+        <eventCard :data="event" />
+      </router-link>
     </section>
   </div>
 </template>
@@ -16,6 +18,7 @@
 <script>
 import { DYNAMIC_ROUTES } from "./../router";
 import eventCard from "./../components/eventCard";
+import { getEvents } from "@/services/apiService";
 
 export default {
   name: "Home",
@@ -25,8 +28,13 @@ export default {
   data: function() {
     return {
       routes: DYNAMIC_ROUTES,
-      id: "3"
+      events: Array
     };
+  },
+  created() {
+    getEvents()
+      .then(events => (this.events = events.data))
+      .catch(error => console.error(error));
   }
 };
 </script>
@@ -35,7 +43,17 @@ export default {
 .card-list {
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding: 1rem;
+  box-sizing: border-box;
+}
+
+.link {
+  text-decoration: none;
+
+  & + .link {
+    margin-top: 1rem;
+  }
 }
 </style>
