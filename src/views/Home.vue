@@ -18,7 +18,7 @@
 <script>
 import { DYNAMIC_ROUTES } from "./../router";
 import eventCard from "./../components/eventCard";
-import { getEvents } from "@/services/apiService";
+import { mapState } from "vuex";
 
 export default {
   name: "Home",
@@ -27,16 +27,14 @@ export default {
   },
   data: function() {
     return {
-      routes: DYNAMIC_ROUTES,
-      events: Array
+      routes: DYNAMIC_ROUTES
     };
   },
+  computed: {
+    ...mapState(["events"])
+  },
   created() {
-    getEvents()
-      .then(events => (this.events = events.data))
-      .catch(error => {
-        throw error;
-      });
+    this.$store.dispatch("fetchEvents");
   }
 };
 </script>
