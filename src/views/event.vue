@@ -22,15 +22,14 @@ export default {
   props: {
     id: String
   },
+  created() {
+    this.$store.dispatch("fetchEvent", this.id);
+  },
   computed: {
     event() {
-      /* playing with SPA deeplinking, if we reload the page on a event detail, the store is empty,
-        so lets fetch the events to make it works =D */
-      return (
-        this.$store.getters.eventById(this.id) ||
-        this.$store.dispatch("fetchEvents")
-      );
+      return this.$store.state.event;
     }
   }
+  //shorthand for this computed: computed: mapState(["event"])
 };
 </script>
